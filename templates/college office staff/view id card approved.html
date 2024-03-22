@@ -1,0 +1,82 @@
+{% extends 'college office staff/office_staff_home.html' %}
+{% block body %}
+    
+    <style>
+    /* Define minimal styling for the table */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+        border: 0; /* Remove border from the table */
+    }
+
+    th, td {
+        padding: 8px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    th {
+        background-color: #f2f2f2;
+    }
+
+    /* Apply minimal styling to form elements */
+    select, input[type="text"], input[type="submit"] {
+        width: 100%;
+        padding: 8px;
+        margin: 5px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px; /* Adjust border radius */
+        box-sizing: border-box;
+    }
+
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        cursor: pointer;
+        border: none; /* Remove border for the button */
+        border-radius: 5px; /* Adjust border radius for the button */
+    }
+
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
+</style>
+	<form>
+	<table width="200" border="1">
+<tbody>
+    <tr>
+      <td>&nbsp;from</td>
+      <td><label for="textfield">Text Field:</label>
+        <input type="text" name="textfield" id="textfield"></td>
+      <td>to&nbsp;</td>
+      <td><label for="textfield2">Text Field:</label>
+        <input type="text" name="textfield2" id="textfield2"></td>
+      <td><input type="submit" name="submit" id="submit" value="search"></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;SL/No</td>
+      <td>student name</td>
+      <td>address</td>
+      <td>phone number</td>
+      <td>department</td>
+      <td>photo</td>
+      <td>academic year&nbsp;</td>
+      <td></td>
+    </tr>
+    {% for i in data %}
+    <tr>
+      <td>&nbsp;{{ forloop.counter }}</td>
+      <td>{{ i.STUDENT.name }}</td>
+      <td>{{ i.STUDENT.house_name }}<br>{{ i.STUDENT.street }}<br>{{ i.STUDENT.pin }}<br>{{ i.STUDENT.post }}</td>
+      <td>{{ i.STUDENT.phone_number}}</td>
+      <td>{{ i.DEPARTMENT.department_name }}</td>
+      <td><img src="{{ i.file }}" height="50px" width="50px"></td>
+      <td>{{ i.academic_year }}</td>
+      <td><a href="/myapp/delete_id_card_approved/{{ i.id }}">delete</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+	</form>
+{% endblock %}
